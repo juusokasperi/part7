@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import { Container, AppBar, Toolbar, Button } from "@mui/material";
 import UserContext from "./UserContext";
 import { useContext } from "react";
+import { useNavigate } from "react-router-dom";
 
 import Notification from "./components/Notification";
 import LoginForm from "./components/LoginForm";
@@ -19,10 +20,14 @@ const App = () => {
   };
 
   const LoginInfo = () => {
+    const navigate = useNavigate();
+
     const logOutButton = () => {
       userDispatch({ type: "LOGOUT" });
       console.log("logged out");
+      navigate("/");
     };
+
     return (
       <>
         {user.name} logged in{" "}

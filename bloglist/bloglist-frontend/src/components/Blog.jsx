@@ -10,6 +10,7 @@ const Blog = () => {
   const user = useUserValue();
   const notificationDispatch = useNotificationDispatch();
   const queryClient = useQueryClient();
+
   const blogLikeMutation = useMutation({
     mutationFn: blogService.like,
     onSuccess: (likedBlog) => {
@@ -144,6 +145,10 @@ const Blog = () => {
     event.target.comment.value = "";
     newCommentMutation.mutate(newObject);
   };
+
+  if (!user) {
+    return "";
+  }
 
   if (blog.url.includes("://")) {
     return (

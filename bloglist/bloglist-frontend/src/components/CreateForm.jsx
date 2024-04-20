@@ -41,8 +41,8 @@ const CreateForm = ({ toggleVisibility }) => {
     };
     event.target.blogTitle.value = "";
     event.target.blogAuthor.value = "";
-    event.target.blogUrl.value = ""
-    newBlogMutation.mutate(blogObject)
+    event.target.blogUrl.value = "";
+    newBlogMutation.mutate(blogObject);
   };
 
   return (

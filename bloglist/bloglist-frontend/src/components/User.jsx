@@ -1,8 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
 import userService from "../services/users";
 import { useMatch } from "react-router-dom";
+import { useUserValue } from "../UserContext";
 
 const User = () => {
+  const loggedUser = useUserValue();
   const match = useMatch("/users/:id");
   const result = useQuery({
     queryKey: ["users"],
@@ -16,6 +18,10 @@ const User = () => {
   const user = match
     ? users.find((user) => user.id === String(match.params.id))
     : null;
+
+  if (!loggedUser) {
+    return "";
+  }
 
   return (
     <div>

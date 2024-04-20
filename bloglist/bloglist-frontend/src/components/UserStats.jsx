@@ -9,8 +9,10 @@ import {
   TableCell,
   TableBody,
 } from "@mui/material";
+import { useUserValue } from "../UserContext";
 
 const UserStats = () => {
+  const user = useUserValue();
   const result = useQuery({
     queryKey: ["users"],
     queryFn: userService.getAll,
@@ -26,6 +28,9 @@ const UserStats = () => {
   }
 
   const users = result.data;
+  if (!user) {
+    return "";
+  }
 
   return (
     <div>
